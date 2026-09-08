@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法考刷题题库 · 手机版+三套刷题程序</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif; background:#eef2f7; color:#222; min-height:100vh; }
+  .wrap { max-width:960px; margin:0 auto; padding:40px 20px 60px; }
+  .head { text-align:center; margin-bottom:36px; }
+  .logo { width:72px; height:72px; border-radius:16px; background:linear-gradient(135deg,#1f5ea8,#2e86de); color:#fff; font-size:34px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; box-shadow:0 8px 20px rgba(30,90,170,.25); }
+  h1 { font-size:26px; color:#15355e; letter-spacing:1px; }
+  .sub { color:#5a6b82; margin-top:8px; font-size:14px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+  .card { background:#fff; border-radius:16px; padding:26px 24px; box-shadow:0 4px 14px rgba(20,40,80,.07); border:2px solid transparent; cursor:pointer; transition:.18s; text-decoration:none; display:block; color:inherit; }
+  .card:hover { border-color:#2e86de; transform:translateY(-3px); box-shadow:0 8px 24px rgba(30,90,170,.16); }
+  .card .ic { font-size:38px; margin-bottom:14px; display:block; }
+  .card h2 { font-size:19px; color:#15355e; margin-bottom:6px; }
+  .card .desc { font-size:13px; color:#7a8aa0; line-height:1.7; margin-bottom:16px; min-height:42px; }
+  .card .meta { display:flex; gap:8px; flex-wrap:wrap; }
+  .card .tag { font-size:12px; padding:4px 12px; border-radius:20px; font-weight:600; }
+  .tag.blue { background:#e7f2fd; color:#1f5ea8; }
+  .tag.green { background:#eaf8ef; color:#1e9e5a; }
+  .tag.orange { background:#fdf3e3; color:#b9761c; }
+  .tag.purple { background:#f1ebfd; color:#7a5ad9; }
+  .card .go { margin-top:18px; font-size:14px; font-weight:600; color:#2e86de; }
+  .mobi-card { border:2px solid #2e86de; background:linear-gradient(180deg,#fff,#f3f8ff); }
+  .foot { margin-top:44px; text-align:center; color:#9aa8ba; font-size:12px; line-height:1.9; }
+  .foot b { color:#6b7a90; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="logo">法</div>
+    <h1>法考刷题题库</h1>
+    <p class="sub">手机版 + 三套机考模拟刷题程序 · 打开即用 · 进度自动保存在你的浏览器</p>
+  </div>
+  <div class="grid">
+    <a class="card mobi-card" href="mobi.html">
+      <span class="ic">📱</span>
+      <h2>手机版 · 三合一（推荐）</h2>
+      <div class="desc">考前100题 + 每日一题 + 背诵卷 全部合并<br>手机上打开，顶部一键切换，刷题进度和电脑互通</div>
+      <div class="meta"><span class="tag purple">手机/电脑通用</span><span class="tag green">4231 题</span></div>
+      <div class="go">打开手机版 →</div>
+    </a>
+    <a class="card" href="kaoshi100.html">
+      <span class="ic">📝</span>
+      <h2>考前 100 题</h2>
+      <div class="desc">8 大科目 · 987 题<br>考前百题全科目仿真机考，考试/练习双模式</div>
+      <div class="meta"><span class="tag blue">8 科目</span><span class="tag green">987 题</span></div>
+      <div class="go">开始刷题 →</div>
+    </a>
+    <a class="card" href="meiri1.html">
+      <span class="ic">📅</span>
+      <h2>每日一题</h2>
+      <div class="desc">4 本名师每日一题 · 534 题<br>柏浪涛·左宁·李佳·孟献贵，逐日打卡仿真练习</div>
+      <div class="meta"><span class="tag blue">4 科目</span><span class="tag green">534 题</span></div>
+      <div class="go">开始刷题 →</div>
+    </a>
+    <a class="card" href="beisongjuan.html">
+      <span class="ic">📖</span>
+      <h2>背诵卷</h2>
+      <div class="desc">5 大科目 · 2710 题<br>设题角度判断 + 简答填空，背完即测，按科目-章节分类</div>
+      <div class="meta"><span class="tag blue">5 科目</span><span class="tag green">2710 题</span></div>
+      <div class="go">开始刷题 →</div>
+    </a>
+  </div>
+  <div class="foot">
+    <b>使用提示</b><br>
+    做题进度 · 错题本 · 收藏夹都保存在你自己的浏览器里，和同学互不影响<br>
+    手机上建议添加到主屏幕，用起来就像 App
+  </div>
+</div>
+</body>
+</html>
