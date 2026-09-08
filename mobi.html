@@ -86,7 +86,7 @@ var STORE_PREFIX = APP_MODES[APP_MODE].prefix;
   .q-type.fill { background:#f0e8fd; color:#7b4fc4; }
   .fill-box { margin-top:6px; }
   .fill-tip { font-size:12px; color:#7b4fc4; margin-bottom:8px; }
-  .fill-input { width:100%; min-height:72px; box-sizing:border-box; border:2px solid #d9cdf0; border-radius:12px; padding:12px 14px; font-size:15px; line-height:1.7; font-family:inherit; resize:vertical; outline:none; }
+  .fill-input { width:100%; min-height:72px; box-sizing:border-box; border:2px solid #d9cdf0; border-radius:12px; padding:12px 14px; font-size:15px; line-height:1.7; font-family:inherit; resize:vertical; outline:none; -webkit-user-select:text; user-select:text; touch-action:auto; }
   .fill-input:focus { border-color:#7b4fc4; }
   .q-body { font-size:16px; line-height:1.85; color:#1d2733; white-space:pre-wrap; }
   .opts { margin-top:20px; display:flex; flex-direction:column; gap:12px; }
@@ -933,14 +933,15 @@ function renderQ(){
       box.appendChild(d);
     });
   } else if (q.type === '填空') {
-    // 填空/简答题：输入框 + 提交
+    // 填空/简答题：输入框 + 提交（oninput 实时保存，onclick 阻止冒泡防重建）
     const d = document.createElement('div');
     d.className = 'fill-box';
     d.innerHTML = '<div class="fill-tip">简答题 · 填对答案关键词即判对</div>' +
-      '<textarea id="fillInput" class="fill-input" rows="2" placeholder="输入你的答案…"></textarea>' +
+      '<textarea id="fillInput" class="fill-input" rows="2" placeholder="输入你的答案…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" oninput="fillInputs[curIndex]=this.value" onclick="event.stopPropagation()"></textarea>' +
       '<div style="margin-top:12px;text-align:right;"><button class="btn btn-primary" id="fillSubmit" onclick="submitFill()">提交答案 ✓</button></div>';
     box.appendChild(d);
-    if (fillInputs[curIndex]) document.getElementById('fillInput').value = fillInputs[curIndex];
+    const fi = document.getElementById('fillInput');
+    if (fi) fi.value = fillInputs[curIndex] || '';
     // 练习模式：已提交则显示反馈
     if (curMode === 'practice' && fillInputs[curIndex]) showFillFeedback(q, fillInputs[curIndex]);
   } else {
@@ -988,6 +989,7 @@ function toggleFavBtn(){
 function toggleOpt(letter){
   if (examOver) return;
   const q = currentQ();
+  if (q.type === '填空') return; // 简答题不响应字母键/选项点击
   const mine = answers[curIndex] || (answers[curIndex] = new Set());
   if (q.type === '单选' || q.type === '判断') { mine.clear(); mine.add(letter); }
   else {
@@ -1643,8 +1645,10 @@ function renderMastery(){
   list.innerHTML = html || '<div style="text-align:center;padding:60px;color:#9aa8ba;">暂无科目数据</div>';
 }
 
-/* 键盘导航 */
+/* 键盘导航（输入框聚焦时不拦截，避免打字触发切题/选项） */
 document.addEventListener('keydown', e => {
+  const t = e.target;
+  if (t && (t.tagName === 'TEXTAREA' || t.tagName === 'INPUT' || (t.getAttribute && t.getAttribute('contenteditable') === 'true'))) return;
   if (document.getElementById('exam').classList.contains('hidden')) return;
   if (e.key === 'ArrowLeft') go(-1);
   else if (e.key === 'ArrowRight') go(1);
